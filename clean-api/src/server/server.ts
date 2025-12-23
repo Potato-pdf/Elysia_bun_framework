@@ -7,6 +7,8 @@ export class Server {
         this.app = new Elysia()
     }
     public start(){
-        this.app.listen(Bun.env.PORT || 3000)
-    }
+        this.app.listen(Bun.env.PORT || 3000, () => {
+            console.log(`Server is running on port ${Bun.env.PORT || 3000}`)
+        }
+    )}
 }
