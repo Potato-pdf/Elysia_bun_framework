@@ -1,8 +1,11 @@
 import { User } from "./user";
 import { UserInterface } from "./user.interface";
+import { PrismaClient } from "@prisma/client";
+
 
 
 export class UserRepository implements UserInterface{
+        constructor(private db: PrismaClient) {}
     async create(email: string, password: string, name?: string): Promise<User> {
         throw new Error("Method not implemented.")
     }
