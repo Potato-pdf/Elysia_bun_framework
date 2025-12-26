@@ -1,18 +1,19 @@
 import { PrismaClient } from "../../generated/prisma/client";
 import { User } from "../domain/user";
 import { UserDAOInterface } from "../domain/interfaces/user.dao.interface";
-
-
+import { CreateUserDTO } from "../domain/dto/createUser.dto";
+import { UpdateUserDTO } from "../domain/dto/updateUser.dto";
 
 export class UsuarioDAO implements UserDAOInterface {
     constructor(private db: PrismaClient) {}
     
-    async create(usuario: User): Promise<User> {
+    async create(data: CreateUserDTO): Promise<User> {
+        // Prisma genera automáticamente id (uuid) y createdAt (now)
         const createdUser = await this.db.user.create({
             data: {
-                email: usuario.email,
-                password: usuario.password,
-                name: usuario.name
+                email: data.email,
+                password: data.password,
+                name: data.name
             }
         });
         return createdUser as User;
@@ -27,13 +28,13 @@ export class UsuarioDAO implements UserDAOInterface {
         return userFound as User
     }
 
-    async update(user: User): Promise<User> {
+    async update(data: UpdateUserDTO): Promise<User> {
         const updatedUser = await this.db.user.update({
-            where: { id: user.id },
+            where: { id: data.id },
             data: {
-                email: user.email,
-                password: user.password,
-                name: user.name
+                email: data.email,
+                password: data.password,
+                name: data.name
             }
         });
         return updatedUser as User;
