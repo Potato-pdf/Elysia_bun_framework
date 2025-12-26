@@ -9,7 +9,6 @@ export class UserRepository implements UserInterface{
     constructor(private usuarioDAO : UserDAOInterface){}
     
     async create(email: string, password: string, name?: string): Promise<User> {
-        // Creamos el DTO sin id ni createdAt
         const createUserDTO: CreateUserDTO = {
             email,
             password,
@@ -29,7 +28,6 @@ export class UserRepository implements UserInterface{
         return await this.usuarioDAO.delete(id)
     }
     async update(user: User): Promise<User> {
-        // Creamos el DTO con los datos a actualizar
         const updateUserDTO: UpdateUserDTO = {
             id: user.id,
             email: user.email,
