@@ -9,21 +9,19 @@ export class UserRepository implements UserInterface{
     constructor(private usuarioDAO : UserDAOInterface){}
     async create(email: string, password: string, name?: string): Promise<User> {
         const nuevoUsuario = new User(
-            crypto.randomUUID(),  // ← Genera ID
+            crypto.randomUUID(),  // Genera el ID
             email,
             password,
             name,
-            new Date()
+            new Date()  // Fecha de creación
         );
         return await this.usuarioDAO.create(nuevoUsuario)
-        throw new Error("Method not implemented.")
-
     }
     async findByEmail(email: string): Promise<User | null> {
-        throw new Error("Method not implemented.")
+        return await this.usuarioDAO.findByEmail(email);
     }
     async findById(id: string): Promise<User | null> {
-        throw new Error("Method not implemented.")
+        return await this.usuarioDAO.findById(id);
     }
     async delete(id: string): Promise<void> {
         throw new Error("Method not implemented")
