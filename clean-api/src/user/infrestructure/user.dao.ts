@@ -21,10 +21,22 @@ export class UsuarioDAO implements UserDAOInterface {
         const userFound = await this.db.user.findUniqueOrThrow({where: {email}})
         return userFound as User
     }
+    
     async findById(id: string): Promise<User | null> {
         const userFound = await this.db.user.findUniqueOrThrow({where: {id}})
         return userFound as User
     }
 
-    
+    async update(user: User): Promise<User> {
+        const updatedUser = await this.db.user.update({
+            where: { id: user.id },
+            data: {
+                email: user.email,
+                password: user.password,
+                name: user.name
+            }
+        });
+        return updatedUser as User;
+    }
+
 }
