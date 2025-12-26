@@ -15,7 +15,6 @@ export class UserRepository implements UserInterface{
             name
         };
         
-        // El DAO envía a Prisma, que genera id y createdAt automáticamente
         return await this.usuarioDAO.create(createUserDTO);
     }
     async findByEmail(email: string): Promise<User | null> {
