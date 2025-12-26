@@ -38,5 +38,10 @@ export class UsuarioDAO implements UserDAOInterface {
         });
         return updatedUser as User;
     }
-
+    
+    async delete(id: string): Promise<void> {
+        await this.db.user.delete({
+            where: { id }
+        });
+    }
 }
