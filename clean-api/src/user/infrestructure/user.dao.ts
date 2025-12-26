@@ -17,4 +17,8 @@ export class UsuarioDAO implements UserDAOInterface {
         });
         return createdUser as User;
     }
+    async findByEmail(email: string): Promise<User | null> {
+        const userFound = await this.db.user.findUniqueOrThrow({where: {email}})
+        return userFound as User
+    }
 }
