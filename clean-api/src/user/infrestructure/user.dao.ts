@@ -8,7 +8,6 @@ export class UsuarioDAO implements UserDAOInterface {
     constructor(private db: PrismaClient) {}
     
     async create(data: CreateUserDTO): Promise<User> {
-        // Prisma genera automáticamente id (uuid) y createdAt (now)
         const createdUser = await this.db.user.create({
             data: {
                 email: data.email,
