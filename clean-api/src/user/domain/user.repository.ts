@@ -1,6 +1,6 @@
 import { User } from "./user";
 import { UserInterface } from "./user.interface";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "../../generated/prisma/client";
 
 
 
