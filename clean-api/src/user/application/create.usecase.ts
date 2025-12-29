@@ -1,8 +1,10 @@
+import { HashInterface } from "../../services/interfaces/hash.interfaces";
 import { UserInterface } from "../domain/interfaces/user.interface";
 
 export class CreateUserUSeCase{
     constructor(
-        private userRepository : UserInterface
+        private userRepository : UserInterface,
+        private hash: HashInterface
     ){}
     async run (email:string, password: string, name:string){
         if (!email.includes('@')) {
@@ -17,7 +19,7 @@ export class CreateUserUSeCase{
             throw new Error('El email ya está registrado');
         }
         
-        const hashedPassword = await Bun.password.hash(password);
+        const hashedPassword = await this.hash.hash(password);
 
         return await this.userRepository.create(email, hashedPassword, name);
     }
