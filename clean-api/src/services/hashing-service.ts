@@ -1,6 +1,7 @@
+import { HashInterface } from "./interfaces/hash.interfaces";
 
 
-export class Hash {
+export class Hash implements HashInterface {
     async hash(password: string){
         const passwordHashed = await Bun.password.hash(password)
         return passwordHashed;
