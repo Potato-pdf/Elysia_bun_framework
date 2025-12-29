@@ -8,4 +8,4 @@ const prisma = new PrismaClient();
 const userDAO = new UsuarioDAO(prisma);
 const userRepository = new UserRepository(userDAO);
 const createUser = new CreateUserUSeCase(userRepository);
-export const createUSerCOntroller = new CreateUserController(createUser);
+export const createUserController = new CreateUserController(createUser);
